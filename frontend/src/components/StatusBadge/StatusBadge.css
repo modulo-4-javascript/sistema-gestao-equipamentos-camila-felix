@@ -1,0 +1,20 @@
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.status-badge--disponivel {
+  background-color: #16a34a;
+}
+
+.status-badge--em_uso {
+  background-color: #2563eb;
+}
+
+.status-badge--manutencao {
+  background-color: #d97706;
+}
