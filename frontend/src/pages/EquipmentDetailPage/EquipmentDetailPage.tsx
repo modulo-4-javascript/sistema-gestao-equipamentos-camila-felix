@@ -1,0 +1,32 @@
+import { Link, useParams } from 'react-router-dom'
+import { equipamentos } from '../../data/equipments'
+import { StatusBadge } from '../../components/StatusBadge/StatusBadge'
+
+// Página de detalhe de um equipamento.
+// Usa o parâmetro :id da URL para descobrir qual equipamento mostrar.
+export function EquipmentDetailPage() {
+  const { id } = useParams()
+  const equipamento = equipamentos.find((item) => item.id === Number(id))
+
+  // Se o id da URL não existir na lista, mostramos um aviso.
+  if (!equipamento) {
+    return (
+      <div>
+        <h2 className="page-title">Equipamento não encontrado</h2>
+        <Link to="/">← Voltar para a lista</Link>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <Link to="/">← Voltar para a lista</Link>
+      <h2 className="page-title">{equipamento.nome}</h2>
+      <p>Categoria: {equipamento.categoria}</p>
+      <p>Patrimônio: {equipamento.patrimonio}</p>
+      <p>
+        Status: <StatusBadge status={equipamento.status} />
+      </p>
+    </div>
+  )
+}

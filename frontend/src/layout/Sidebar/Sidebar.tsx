@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 // Menu lateral da aplicação.
 const Nav = styled.nav`
@@ -16,27 +17,40 @@ const MenuList = styled.ul`
   gap: 0.25rem;
 `
 
-const MenuItem = styled.li`
+// Link de navegação. O react-router adiciona a classe "active"
+// automaticamente no link da página atual.
+const MenuLink = styled(NavLink)`
+  display: block;
   color: #cbd5e1;
+  text-decoration: none;
   padding: 0.6rem 0.75rem;
   border-radius: 8px;
   font-size: 0.95rem;
-  cursor: pointer;
 
   &:hover {
     background-color: #334155;
     color: #ffffff;
   }
+
+  &.active {
+    background-color: #334155;
+    color: #ffffff;
+  }
 `
 
-// Barra lateral com os itens de navegação (por enquanto estáticos;
-// as rotas de verdade chegam na aula-04).
+// Barra lateral com os links de navegação.
 export function Sidebar() {
   return (
     <Nav>
       <MenuList>
-        <MenuItem>Equipamentos</MenuItem>
-        <MenuItem>Localizações</MenuItem>
+        <li>
+          <MenuLink to="/" end>
+            Equipamentos
+          </MenuLink>
+        </li>
+        <li>
+          <MenuLink to="/localizacoes">Localizações</MenuLink>
+        </li>
       </MenuList>
     </Nav>
   )
