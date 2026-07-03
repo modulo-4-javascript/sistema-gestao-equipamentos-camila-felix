@@ -1,22 +1,11 @@
-.app {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-}
-
-.app h1 {
-  margin-bottom: 0.25rem;
-  font-size: 1.75rem;
-}
-
-.app__subtitle {
-  margin-top: 0;
-  color: #64748b;
+.page-title {
+  margin: 0 0 1.25rem;
+  font-size: 1.4rem;
+  color: #0f172a;
 }
 
 .equipment-list {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1rem;
-  margin-top: 1.5rem;
 }

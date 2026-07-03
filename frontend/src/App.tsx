@@ -1,8 +1,9 @@
 import './App.css'
+import { AppLayout } from './layout/AppLayout/AppLayout'
 import { EquipmentCard } from './components/EquipmentCard/EquipmentCard'
 import type { Equipment } from './types/equipment'
 
-// Lista de exemplo (dados fixos por enquanto; nas próximas aulas virão de uma API).
+// Lista de exemplo (dados fixos por enquanto; virão de uma API nas próximas aulas).
 const equipamentos: Equipment[] = [
   {
     id: 1,
@@ -29,16 +30,15 @@ const equipamentos: Equipment[] = [
 
 function App() {
   return (
-    <main className="app">
-      <h1>Sistema de Gestão de Equipamentos</h1>
-      <p className="app__subtitle">Lista de equipamentos cadastrados</p>
+    <AppLayout>
+      <h2 className="page-title">Equipamentos cadastrados</h2>
 
       <section className="equipment-list">
         {equipamentos.map((equipamento) => (
           <EquipmentCard key={equipamento.id} equipment={equipamento} />
         ))}
       </section>
-    </main>
+    </AppLayout>
   )
 }
 
