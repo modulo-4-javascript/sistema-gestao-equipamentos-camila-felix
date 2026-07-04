@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { equipamentos } from '../../data/equipments'
+import { useEquipments } from '../../hooks/useEquipments'
 import { SummaryCards } from '../../components/SummaryCards/SummaryCards'
 import {
   EquipmentFilters,
@@ -7,13 +7,16 @@ import {
 } from '../../components/EquipmentFilters/EquipmentFilters'
 import { EquipmentTable } from '../../components/EquipmentTable/EquipmentTable'
 
-// Página inicial: resumo, filtros e tabela de equipamentos.
+// Página inicial: resumo, filtros e tabela de equipamentos vindos da API.
 export function EquipmentListPage() {
+  // Dados carregados da API (com estados de carregamento e erro).
+  const { equipamentos, carregando, erro } = useEquipments()
+
   // Estado dos filtros (o que o usuário digitou/selecionou).
   const [busca, setBusca] = useState('')
   const [status, setStatus] = useState<StatusFilter>('todos')
 
-  // Aplica os filtros de nome e status sobre a lista completa.
+  // Aplica os filtros de nome e status sobre a lista carregada.
   const equipamentosFiltrados = equipamentos.filter((equipamento) => {
     const combinaBusca = equipamento.nome
       .toLowerCase()
@@ -26,16 +29,23 @@ export function EquipmentListPage() {
     <>
       <h2 className="page-title">Equipamentos cadastrados</h2>
 
-      <SummaryCards equipamentos={equipamentos} />
+      {carregando && <p>Carregando equipamentos...</p>}
+      {erro && <p>{erro}</p>}
 
-      <EquipmentFilters
-        busca={busca}
-        status={status}
-        onBuscaChange={setBusca}
-        onStatusChange={setStatus}
-      />
+      {!carregando && !erro && (
+        <>
+          <SummaryCards equipamentos={equipamentos} />
 
-      <EquipmentTable equipamentos={equipamentosFiltrados} />
+          <EquipmentFilters
+            busca={busca}
+            status={status}
+            onBuscaChange={setBusca}
+            onStatusChange={setStatus}
+          />
+
+          <EquipmentTable equipamentos={equipamentosFiltrados} />
+        </>
+      )}
     </>
   )
 }
