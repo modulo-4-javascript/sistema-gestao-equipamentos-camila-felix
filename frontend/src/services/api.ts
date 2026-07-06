@@ -1,8 +1,7 @@
-// AULA 07: descomente este arquivo para criar a instância do Axios usada pelos services.
-// import axios from 'axios'
-//
-// export const axiosApi = axios.create({
-//   baseURL: import.meta.env.VITE_API_URL ?? '/api/v1',
-// })
+import axios from 'axios'
 
-export {}
+// Instância única do Axios usada por todos os services.
+// baseURL vem do .env (VITE_API_URL); em dev, o Vite faz proxy para o backend.
+export const axiosApi = axios.create({
+  baseURL: import.meta.env.VITE_API_URL ?? '/api/v1',
+})
